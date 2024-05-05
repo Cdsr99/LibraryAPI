@@ -8,7 +8,7 @@ dotnet add package Microsoft.EntityFrameworkCore --version 9.0.0-preview.3.24172
 ````
 
 ````shell
-dotnet add package Pomelo.EntityFrameworkCore.MySql --version 9.0.0-preview.1
+dotnet add package Pomelo.EntityFrameworkCore.MySql --version 8.0.2
 ````
 
 ````shell
@@ -30,7 +30,7 @@ dotnet ef database update
 Lembre-se de instalar o pacote para rodar as migration
 
 ````shell
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 9.0.0-preview.3.24172.4
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.4
 ````
 
 

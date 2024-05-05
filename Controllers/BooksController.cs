@@ -22,9 +22,22 @@ public class BooksController: ControllerBase
     
     #region Get Books
     [HttpGet]
-    public IActionResult GetTest()
+    public IActionResult  GetBooks([FromQuery] int skip = 0 , [FromQuery] int take = 50)
     {
-        return Ok("Hello world");
+        try
+        {
+            var books = _context.Books
+                .ToList() 
+                .Skip(skip)
+                .Take(take)
+                .ToList(); 
+            
+            return Ok(books);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
     #endregion
 
