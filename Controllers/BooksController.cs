@@ -1,8 +1,10 @@
+using System.Runtime.InteropServices.JavaScript;
 using AutoMapper;
 using LibraryAPI.Data;
 using LibraryAPI.Dtos.BookDto;
 using LibraryAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 
 namespace LibraryAPI.Controllers;
 
@@ -22,22 +24,11 @@ public class BooksController: ControllerBase
     
     #region Get Books
     [HttpGet]
-    public IActionResult  GetBooks([FromQuery] int skip = 0 , [FromQuery] int take = 50)
+    public IEnumerable<Books> GetBooks([FromQuery] int skip = 0 , [FromQuery] int take = 50)
     {
-        try
-        {
-            var books = _context.Books
-                .ToList() 
+            return _context.Books
                 .Skip(skip)
-                .Take(take)
-                .ToList(); 
-            
-            return Ok(books);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Internal server error: {ex.Message}");
-        }
+                .Take(take);
     }
     #endregion
 
