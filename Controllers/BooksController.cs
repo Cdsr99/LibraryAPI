@@ -42,8 +42,22 @@ public class BooksController: ControllerBase
         _context.SaveChanges();
         return Ok(book);
     }
-    
-
     #endregion
+    
+    #region Getting book by Id
+    [HttpGet("{id}")]
+    public IActionResult SearchBook(int Id)
+    {
+        var result = _context.Books.FirstOrDefault(a => a.Id == Id);
+        
+        if (result == null)
+        {
+            return NotFound();
+        }
+        
+        return Ok(result);
+    }
+    #endregion
+
     
 }

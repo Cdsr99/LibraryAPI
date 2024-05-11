@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LibraryAPI.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class UpdatingColumnsType : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
