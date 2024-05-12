@@ -46,9 +46,9 @@ public class BooksController: ControllerBase
     
     #region Getting book by Id
     [HttpGet("{id}")]
-    public IActionResult SearchBook(int Id)
+    public IActionResult SearchBook(int id)
     {
-        var result = _context.Books.FirstOrDefault(a => a.Id == Id);
+        var result = _context.Books.FirstOrDefault(a => a.Id == id);
         
         if (result == null)
         {
@@ -58,6 +58,22 @@ public class BooksController: ControllerBase
         return Ok(result);
     }
     #endregion
+    
+    #region Getting book by Id
+    [HttpPut("{id}")]
+    public IActionResult UpdateBooks(int id, [FromBody] UpdateBookDto bookDto)
+    {
+        var result = _context.Books.FirstOrDefault(a => a.Id == id);
+        
+        if (result == null)
+        {
+            return NotFound();
+        }
 
+        _mapper.Map(bookDto, result);
+        _context.SaveChanges();
+        return Ok(result);
+    }
+    #endregion
     
 }
