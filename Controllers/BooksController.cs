@@ -59,7 +59,7 @@ public class BooksController: ControllerBase
     }
     #endregion
     
-    #region Getting book by Id
+    #region Updating book
     [HttpPut("{id}")]
     public IActionResult UpdateBooks(int id, [FromBody] UpdateBookDto bookDto)
     {
@@ -73,6 +73,19 @@ public class BooksController: ControllerBase
         _mapper.Map(bookDto, result);
         _context.SaveChanges();
         return Ok(result);
+    }
+    #endregion
+    
+    #region Deleting book
+    [HttpDelete("{id}")]
+    public IActionResult DeleteBooks(int id)
+    {
+        var book = _context.Books.FirstOrDefault(a => a.Id == id);
+
+        if (book == null) return NotFound();
+        _context.Remove(book);
+        _context.SaveChanges();
+        return NoContent();
     }
     #endregion
     
